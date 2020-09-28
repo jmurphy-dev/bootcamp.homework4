@@ -1,20 +1,33 @@
 // Quiz Game
+$(document).ready (function() {
 
-    // Pregame
+    preGame();
+    game();
+    endGame();
+    highScores();
+});
 
-        // Draw Rules of game
+// Pregame
+    
+function preGame() {
+
+        // Draw pregame screen
+        // A $( document ).ready() block.
+            console.log("preGame");
 
         // Draw clock
-
+        
         // Optional** Draw current high score
 
         // Draw button
 
             // When the use presses the button start the game loop
+}
 
-    
-    // Game Loop
-        
+// Game loop
+
+function game() {   
+        console.log("game");
         // Draw questions & start clock
 
         // Store number of questions left
@@ -30,9 +43,12 @@
                         // Stop the clock & save the value of time remaining
 
                         // Start the end game loop
-    
-    // End Game
+}
 
+// End Game
+
+function endGame () {  
+        console.log("endGame")
         // Draw game score & input field for player 
         
         // Add play result to list of player result
@@ -40,5 +56,9 @@
         // Draw current high score && new game button
 
             // When the user presses the button start the pregame loop
+}           
 
 
+function highScores () {
+        console.log("highScores")
+}

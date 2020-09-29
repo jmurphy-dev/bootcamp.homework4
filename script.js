@@ -46,34 +46,35 @@ function game() {
     // Access all of the questions answer objects
 
     for (const key in questions) {
-      console.log(`${key}: ${questions[key]}`);
+      //console.log(`${key}: ${questions[key]}`);
       currentQuestion = questions[key];
-
       // Access all of the questions and answers
       for (const key in currentQuestion) {
-        console.log(`${key}: ${currentQuestion[key]}`);
+        //console.log(`${key}: ${currentQuestion[key]}`);
         var currentObjVal = Object.values(currentQuestion);
 
         console.log(currentObjVal);        
         var questionStr = currentObjVal[0];
+        $(
+            `<h2> ${questionStr} </h2>`
+          ).appendTo("#game-space");
         var questionA = currentObjVal[1];
         var questionB = currentObjVal[2];
         var questionC = currentObjVal[3];
         var questionD = currentObjVal[4];
         var answerToCheck = currentObjVal[5];
-        var buttonA = $("input[name=background][value='some value']").prop("checked", true);
-        var buttonB = $("input[name=background][value='some value']").prop("checked", true);
-        var buttonC = $("input[name=background][value='some value']").prop("checked", true);
-        var buttonD = $("input[name=background][value='some value']").prop("checked", true);
-        buttonA.appendTo("#game-space");
+        $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
+        var buttonA = $(`<button>${questionA}</button>]`).prop("checked", true);
+        var buttonB = $(`<button>${questionB}</button>]`).prop("checked", true);
+        var buttonC = $(`<button>${questionC}</button>]`).prop("checked", true);
+        var buttonD = $(`<button>${questionD}</button>]`).prop("checked", true);
+        $(buttonA).appendTo("#game-space");
         buttonB.appendTo("#game-space");
         buttonC.appendTo("#game-space");
         buttonD.appendTo("#game-space");
         
 
-        $(
-          `<h2> ${questionStr} </h2>`
-        ).appendTo("#game-space");
+        
 
 
         // Clear the game space after a question is answered.
@@ -118,8 +119,8 @@ function highScores() {
 
 const questions = {
   1: {
-    question: "a question",
-    a: "an answer",
+    question: "question 1",
+    a: "a answer",
     b: "an answer",
     c: "an answer",
     d: "an answer",
@@ -127,7 +128,7 @@ const questions = {
   },
 
   2: {
-    question: "a question",
+    question: "question 2",
     a: "an answer",
     b: "an answer",
     c: "an answer",
@@ -136,7 +137,7 @@ const questions = {
   },
 
   3: {
-    question: "a question",
+    question: "question 3",
     a: "an answer",
     b: "an answer",
     c: "an answer",
@@ -145,7 +146,7 @@ const questions = {
   },
 
   4: {
-    question: "a question",
+    question: "question 4",
     a: "an answer",
     b: "an answer",
     c: "an answer",
@@ -154,7 +155,7 @@ const questions = {
   },
 
   5: {
-    question: "a question",
+    question: "question 5",
     a: "an answer",
     b: "an answer",
     c: "an answer",
@@ -163,7 +164,7 @@ const questions = {
   },
 
   6: {
-    question: "a question",
+    question: "question 6",
     a: "an answer",
     b: "an answer",
     c: "an answer",

@@ -13,20 +13,20 @@ function preGame() {
 
   var timeLeft = 60;
   // Draw clock
-  $("#time-left").text(`Time left : ${timeLeft}`);
+  var clock = $("#time-left").text(`Time left : ${timeLeft}`);
   // Draw Intro
 
-  $("<h1>Welcome to code quiz!<h1>").appendTo("#game-space");
-  $(
+  var title = $("<h1>Welcome to code quiz!<h1>").appendTo("#game-space");
+  var rules = $(
     "<p>Rules: When you press the button the timer will start and you will be presented a series of multiple choice questions. If you answer incorrectly time will be deducted from the time remaining. The games with the most time remaing will be stored along with player initials.<p>"
   ).appendTo("#game-space");
 
   // Draw button
 
-  var $begin = $('<input type="button" value="Begin Game"/>');
-  $begin.appendTo("#game-space");
+  var begin = $('<input type="button" value="Begin Game"/>');
+  begin.appendTo("#game-space");
 
-  $begin.on("click", function () {
+  begin.on("click", function () {
     game();
   });
 
@@ -36,12 +36,20 @@ function preGame() {
 // Game loop
 
 function game() {
-  console.log("game");
+    console.log("game");
   // Draw questions & start clock
-
+    
   // Store number of questions left
-
+  var questionRemaining = Object.keys(questions);
   // Event loop
+  console.log(questionRemaining[6]);
+
+  for(const key in questions) {
+      var currentQuestion = questions[key];
+      for (const key in currentQuestion) {
+        console.log(`${key}: ${currentQuestion[key]}`);
+      }
+  }
 
   // On user choice
 
@@ -73,50 +81,56 @@ function highScores() {
 
 const questions = {
   1: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question",
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "b",
   },
 
   2: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question",
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "d",
   },
 
   3: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question",
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "a",
   },
 
   4: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question",
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "b",
   },
 
   5: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question",
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "c",
   },
 
   6: {
-    a: "a question",
-    b: "a question",
-    c: "a question",
-    d: "a question",
-    answer: "a question",
+    question: "an question", 
+    a: "an answer",
+    b: "an answer",
+    c: "an answer",
+    d: "an answer",
+    answer: "a",
   },
 };

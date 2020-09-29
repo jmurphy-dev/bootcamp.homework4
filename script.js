@@ -41,53 +41,77 @@ function game() {
   // Event loop
   console.log(Number(questionRemaining[5]));
   questionRemaining = questionRemaining[5];
+  for (const key in questions) {
+    //console.log(`${key}: ${questions[key]}`);
+    currentQuestion = questions[key];
 
-  if (questionRemaining > 0 && timeLeft > 0) {
-    // Access all of the questions answer objects
+    // Access all of the questions and answers
+    for (const key in currentQuestion) {
+      //console.log(`${key}: ${currentQuestion[key]}`);
+      var currentObjVal = Object.values(currentQuestion);
 
-    for (const key in questions) {
-      //console.log(`${key}: ${questions[key]}`);
-      currentQuestion = questions[key];
-      // Access all of the questions and answers
-      for (const key in currentQuestion) {
-        //console.log(`${key}: ${currentQuestion[key]}`);
-        var currentObjVal = Object.values(currentQuestion);
+      //console.log(currentObjVal);
+      var questionStr = currentObjVal[0];
+      var answerA = currentObjVal[1];
+      var answerB = currentObjVal[2];
+      var answerC = currentObjVal[3];
+      var answerD = currentObjVal[4];
+      var answerToCheck = currentObjVal[5];
+      var answerChosen = false;
 
-        console.log(currentObjVal);        
-        var questionStr = currentObjVal[0];
-        $(
-            `<h2> ${questionStr} </h2>`
-          ).appendTo("#game-space");
-        var questionA = currentObjVal[1];
-        var questionB = currentObjVal[2];
-        var questionC = currentObjVal[3];
-        var questionD = currentObjVal[4];
-        var answerToCheck = currentObjVal[5];
-        $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
-        var buttonA = $(`<button>${questionA}</button>]`).prop("checked", true);
-        var buttonB = $(`<button>${questionB}</button>]`).prop("checked", true);
-        var buttonC = $(`<button>${questionC}</button>]`).prop("checked", true);
-        var buttonD = $(`<button>${questionD}</button>]`).prop("checked", true);
-        $(buttonA).appendTo("#game-space");
-        buttonB.appendTo("#game-space");
-        buttonC.appendTo("#game-space");
-        buttonD.appendTo("#game-space");
-        
-
-        
-
-
-        // Clear the game space after a question is answered.
-
-        console.log(timeLeft);
-      }
-      questionRemaining--;
-      console.log(questionRemaining);
+      console.log(timeLeft);
     }
-  } else {
-    endGame();
-    console.log("!! Calling endGame from game!!");
+    if (!answerChosen) {
+      $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
+      var buttonA = $(`<button>${answerA}</button>`)
+        .prop("checked", true)
+        .appendTo("#game-space")
+        .addClass("button-a")
+        .val("a")
+        .click(function () {
+          questionRemaining--;
+          console.log(questionRemaining);
+          answerChosen = true;
+        });
+      var buttonB = $(`<button>${answerB}</button>`)
+        .prop("checked", true)
+        .appendTo("#game-space")
+        .addClass("button-b")
+        .val("b")
+        .click(function () {
+          questionRemaining--;
+          console.log(questionRemaining);
+        });
+      var buttonC = $(`<button>${answerC}</button>`)
+        .prop("checked", true)
+        .appendTo("#game-space")
+        .addClass("button-c")
+        .val("c")
+        .click(function () {
+          questionRemaining--;
+          console.log(questionRemaining);
+        });
+      var buttonD = $(`<button>${answerD}</button>`)
+        .prop("checked", true)
+        .appendTo("#game-space")
+        .addClass("button-d")
+        .val("d")
+        .click(function () {
+          questionRemaining--;
+          console.log(questionRemaining);
+        });
+    }
+
+    console.log(questionRemaining);
+    if (questionRemaining > 0 && timeLeft > 0) {
+      // Access all of the questions answer objects
+    } else {
+      endGame();
+      console.log("!! Calling endGame from game!!");
+    }
   }
+
+  
 
   // On user choice
 
@@ -120,55 +144,55 @@ function highScores() {
 const questions = {
   1: {
     question: "question 1",
-    a: "a answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a1 answer",
+    b: "b1 answer",
+    c: "c1 answer",
+    d: "d1 answer",
     answer: "b",
   },
 
   2: {
     question: "question 2",
-    a: "an answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a2 answer",
+    b: "b2 answer",
+    c: "c2 answer",
+    d: "d2 answer",
     answer: "d",
   },
 
   3: {
     question: "question 3",
-    a: "an answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a3 answer",
+    b: "b3 answer",
+    c: "c3 answer",
+    d: "d3 answer",
     answer: "a",
   },
 
   4: {
     question: "question 4",
-    a: "an answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a4 answer",
+    b: "b4 answer",
+    c: "c4 answer",
+    d: "d4 answer",
     answer: "b",
   },
 
   5: {
     question: "question 5",
-    a: "an answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a5 answer",
+    b: "b5 answer",
+    c: "c5 answer",
+    d: "d5 answer",
     answer: "c",
   },
 
   6: {
     question: "question 6",
-    a: "an answer",
-    b: "an answer",
-    c: "an answer",
-    d: "an answer",
+    a: "a6 answer",
+    b: "b6 answer",
+    c: "c6 answer",
+    d: "d6 answer",
     answer: "a",
   },
 };

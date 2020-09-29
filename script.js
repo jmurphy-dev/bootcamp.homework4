@@ -1,64 +1,122 @@
 // Quiz Game
-$(document).ready (function() {
 
-    preGame();
-    game();
-    endGame();
-    highScores();
+$(document).ready(function () {
+  preGame();
+
+  endGame();
 });
 
 // Pregame
-    
+
 function preGame() {
+  console.log("preGame");
 
-        // Draw pregame screen
-        // A $( document ).ready() block.
-            console.log("preGame");
+  var timeLeft = 60;
+  // Draw clock
+  $("#time-left").text(`Time left : ${timeLeft}`);
+  // Draw Intro
 
-        // Draw clock
-        
-        // Optional** Draw current high score
+  $("<h1>Welcome to code quiz!<h1>").appendTo("#game-space");
+  $(
+    "<p>Rules: When you press the button the timer will start and you will be presented a series of multiple choice questions. If you answer incorrectly time will be deducted from the time remaining. The games with the most time remaing will be stored along with player initials.<p>"
+  ).appendTo("#game-space");
 
-        // Draw button
+  // Draw button
 
-            // When the use presses the button start the game loop
+  var $begin = $('<input type="button" value="Begin Game"/>');
+  $begin.appendTo("#game-space");
+
+  $begin.on("click", function () {
+    game();
+  });
+
+  // When the use presses the button start the game loop
 }
 
 // Game loop
 
-function game() {   
-        console.log("game");
-        // Draw questions & start clock
+function game() {
+  console.log("game");
+  // Draw questions & start clock
 
-        // Store number of questions left
+  // Store number of questions left
 
-        // Event loop
+  // Event loop
 
-            // On user choice
+  // On user choice
 
-                // Check answer & draw new questions & calculate new time & decrement questions left
+  // Check answer & draw new questions & calculate new time & decrement questions left
 
-                    // If there are no more questions
-                        
-                        // Stop the clock & save the value of time remaining
+  // If there are no more questions
 
-                        // Start the end game loop
+  // Stop the clock & save the value of time remaining
+
+  // Start the end game loop
 }
 
 // End Game
 
-function endGame () {  
-        console.log("endGame")
-        // Draw game score & input field for player 
-        
-        // Add play result to list of player result
+function endGame() {
+  console.log("endGame");
+  // Draw game score & input field for player
 
-        // Draw current high score && new game button
+  // Add play result to list of player result
 
-            // When the user presses the button start the pregame loop
-}           
+  // Draw current high score && new game button
 
-
-function highScores () {
-        console.log("highScores")
+  // When the user presses the button start the pregame loop
 }
+
+function highScores() {
+  console.log("highScores");
+}
+
+const questions = {
+  1: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+
+  2: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+
+  3: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+
+  4: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+
+  5: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+
+  6: {
+    a: "a question",
+    b: "a question",
+    c: "a question",
+    d: "a question",
+    answer: "a question",
+  },
+};

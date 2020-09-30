@@ -3,8 +3,8 @@ var timeLeft = 60;
 var answerChosen = false;
 var questionRemaining = 0;
 var userChoice = "";
-var answerToCheck = "";
 var clock = "";
+var q = 0;
 
 $(document).ready(function () {
   preGame();
@@ -16,7 +16,7 @@ function preGame() {
   console.log("preGame");
 
   // Draw clock
-   clock = $("#time-left").text(`Time left : ${timeLeft}`);
+  clock = $("#time-left").text(`Time left : ${timeLeft}`);
 
   // Draw Intro
   $("<h1>Welcome to code quiz!<h1>").appendTo("#game-space");
@@ -43,15 +43,16 @@ function game() {
   // Store number of questions left
   questionRemaining = Object.keys(questions);
   // Event loop
-  //console.log(Number(questionRemaining[5]));
+  console.log(Number(questionRemaining[5]));
   questionRemaining = questionRemaining[5];
+  q = questionRemaining[0];
   // Access all of the questions answer objects
   for (questionRemaining in questions) {
     //console.log(`${key}: ${questions[key]}`);
     currentQuestion = questions[questionRemaining];
-
+    
     // Access all of the questions and answers
-    for (let key in currentQuestion) {
+    for (q in currentQuestion) {
       //console.log(`${key}: ${currentQuestion[key]}`);
       var currentObjVal = Object.values(currentQuestion);
 
@@ -61,7 +62,7 @@ function game() {
       var answerB = currentObjVal[2];
       var answerC = currentObjVal[3];
       var answerD = currentObjVal[4];
-      answerToCheck = currentObjVal[5];
+      var answerToCheck = currentObjVal[5];
     }
     //Question
     $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
@@ -71,16 +72,14 @@ function game() {
       .appendTo("#game-space")
       .addClass("button-a")
       .val("a")
-      .click(function (answerToCheck) {
+      .click(function () {
         questionRemaining--;
         userChoice = this.value;
         console.log(
           `This is the answer to check :: :: ${answerToCheck} :: :: according to the button`
         );
         onUserChoice(answerToCheck);
-        console.log(
-          `This is the number of questions remaining ${questionRemaining}`
-        );
+        q++;
       });
     //Answer B
     $(`<button>${answerB}</button>`)
@@ -88,16 +87,13 @@ function game() {
       .appendTo("#game-space")
       .addClass("button-b")
       .val("b")
-      .click(function (answerToCheck) {
+      .click(function () {
         questionRemaining--;
         userChoice = this.value;
         console.log(
           `This is the answer to check :: :: ${answerToCheck} :: :: according to the button`
         );
         onUserChoice(answerToCheck);
-        console.log(
-          `This is the number of questions remaining ${questionRemaining}`
-        );
       });
     //Answer C
     $(`<button>${answerC}</button>`)
@@ -105,16 +101,13 @@ function game() {
       .appendTo("#game-space")
       .addClass("button-c")
       .val("c")
-      .click(function (answerToCheck) {
+      .click(function () {
         questionRemaining--;
         userChoice = this.value;
         console.log(
           `This is the answer to check :: :: ${answerToCheck} :: :: according to the button`
         );
         onUserChoice(answerToCheck);
-        console.log(
-          `This is the number of questions remaining ${questionRemaining}`
-        );
       });
     //Answer D
     $(`<button>${answerD}</button>`)
@@ -122,16 +115,13 @@ function game() {
       .appendTo("#game-space")
       .addClass("button-d")
       .val("d")
-      .click(function (answerToCheck) {
+      .click(function () {
         questionRemaining--;
         userChoice = this.value;
         console.log(
           `This is the answer to check :: :: ${answerToCheck} :: :: according to the button`
         );
         onUserChoice(answerToCheck);
-        console.log(
-          `This is the number of questions remaining ${questionRemaining}`
-        );
       });
   }
 
@@ -146,14 +136,13 @@ function onUserChoice(answerToCheck) {
   // If there are no more questions
   if (questionRemaining === 0 || timeLeft === 0) {
     endGame();
-    console.log("!! Calling endGame from game!!");
   } else if (userChoice === answerToCheck) {
     // Check answer & draw new questions & calculate new time & decrement questions left
     console.log(`The correct answer was chosen!`);
   } else {
     console.log(`The incorrect answer was chosen!`);
     timeLeft = timeLeft - 5;
-    console.log(`:: :: Time left ${timeLeft} :: ::`)
+    console.log(`:: :: Time left ${timeLeft} :: ::`);
     clock = $("#time-left").text(`Time left : ${timeLeft}`);
   }
 }
@@ -163,9 +152,9 @@ function onUserChoice(answerToCheck) {
 function endGame() {
   console.log("endGame");
   // Draw game score & input field for player
-
+  $("#game-space").children().remove();
   // Add play result to list of player result
-
+  prompt(`Your score from this round was ${timeLeft}`)
   // Draw current high score && new game button
   highScores();
 }
@@ -173,6 +162,8 @@ function endGame() {
 function highScores() {
   console.log("highScores");
   // When the user presses the button start the pregame loop
+  console.log(`Final score is ${timeLeft}!`);
+  preGame();
 }
 
 const questions = {
@@ -182,7 +173,7 @@ const questions = {
     b: "b1 answer",
     c: "c1 answer",
     d: "d1 answer",
-    answer: "b"
+    answer: "b",
   },
 
   2: {
@@ -191,7 +182,7 @@ const questions = {
     b: "b2 answer",
     c: "c2 answer",
     d: "d2 answer",
-    answer: "d"
+    answer: "d",
   },
 
   3: {
@@ -200,7 +191,7 @@ const questions = {
     b: "b3 answer",
     c: "c3 answer",
     d: "d3 answer",
-    answer: "a"
+    answer: "a",
   },
 
   4: {
@@ -209,7 +200,7 @@ const questions = {
     b: "b4 answer",
     c: "c4 answer",
     d: "d4 answer",
-    answer: "b"
+    answer: "b",
   },
 
   5: {
@@ -218,7 +209,7 @@ const questions = {
     b: "b5 answer",
     c: "c5 answer",
     d: "d5 answer",
-    answer: "c"
+    answer: "c",
   },
 
   6: {
@@ -227,6 +218,6 @@ const questions = {
     b: "b6 answer",
     c: "c6 answer",
     d: "d6 answer",
-    answer: "a"
+    answer: "a",
   },
 };

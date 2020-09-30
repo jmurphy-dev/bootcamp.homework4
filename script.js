@@ -21,32 +21,38 @@ function preGame() {
   // Draw button
   var begin = $('<input type="button" value="Begin Game"/>');
   begin.appendTo("#game-space");
-
+  // When the user presses the button start the game loop
   begin.on("click", function () {
     game(clock);
   });
-
-  // When the user presses the button start the game loop
 }
 
 // Game loop
 
 function game() {
+  var questionRemaining
+  if (questionRemaining === 0 || timeLeft === 0) {
+    // Access all of the questions answer objects
+    endGame();
+    console.log("!! Calling endGame from game!!");
+  } 
   console.log("game");
   $("#game-space").children().remove();
   // Draw questions & start clock
-
+  console.log(`This is the amount of time left ${timeLeft}`);
   // Store number of questions left
-  var questionRemaining = Object.keys(questions);
+  questionRemaining = Object.keys(questions);
   // Event loop
-  console.log(Number(questionRemaining[5]));
+  //console.log(Number(questionRemaining[5]));
   questionRemaining = questionRemaining[5];
-  for (const key in questions) {
+  
+  for (questionRemaining in questions) {
     //console.log(`${key}: ${questions[key]}`);
-    currentQuestion = questions[key];
+    currentQuestion = questions[questionRemaining];
+    
 
     // Access all of the questions and answers
-    for (const key in currentQuestion) {
+    for (let key in currentQuestion) {
       //console.log(`${key}: ${currentQuestion[key]}`);
       var currentObjVal = Object.values(currentQuestion);
 
@@ -58,61 +64,51 @@ function game() {
       var answerD = currentObjVal[4];
       var answerToCheck = currentObjVal[5];
       var answerChosen = false;
-
-      console.log(timeLeft);
-    }
-    if (!answerChosen) {
-      $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
-      var buttonA = $(`<button>${answerA}</button>`)
-        .prop("checked", true)
-        .appendTo("#game-space")
-        .addClass("button-a")
-        .val("a")
-        .click(function () {
-          questionRemaining--;
-          console.log(questionRemaining);
-          answerChosen = true;
-        });
-      var buttonB = $(`<button>${answerB}</button>`)
-        .prop("checked", true)
-        .appendTo("#game-space")
-        .addClass("button-b")
-        .val("b")
-        .click(function () {
-          questionRemaining--;
-          console.log(questionRemaining);
-        });
-      var buttonC = $(`<button>${answerC}</button>`)
-        .prop("checked", true)
-        .appendTo("#game-space")
-        .addClass("button-c")
-        .val("c")
-        .click(function () {
-          questionRemaining--;
-          console.log(questionRemaining);
-        });
-      var buttonD = $(`<button>${answerD}</button>`)
-        .prop("checked", true)
-        .appendTo("#game-space")
-        .addClass("button-d")
-        .val("d")
-        .click(function () {
-          questionRemaining--;
-          console.log(questionRemaining);
-        });
+      break
     }
 
-    console.log(questionRemaining);
-    if (questionRemaining > 0 && timeLeft > 0) {
-      // Access all of the questions answer objects
-    } else {
-      endGame();
-      console.log("!! Calling endGame from game!!");
-    }
+    $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
+    var buttonA = $(`<button>${answerA}</button>`)
+      .prop("checked", true)
+      .appendTo("#game-space")
+      .addClass("button-a")
+      .val("a")
+      .click(function () {
+        questionRemaining--;
+        console.log((`This is the number of questions remaining ${questionRemaining}`));
+        answerChosen = true;
+      });
+    var buttonB = $(`<button>${answerB}</button>`)
+      .prop("checked", true)
+      .appendTo("#game-space")
+      .addClass("button-b")
+      .val("b")
+      .click(function () {
+        questionRemaining--;
+        console.log((`This is the number of questions remaining ${questionRemaining}`));
+      });
+    var buttonC = $(`<button>${answerC}</button>`)
+      .prop("checked", true)
+      .appendTo("#game-space")
+      .addClass("button-c")
+      .val("c")
+      .click(function () {
+        questionRemaining--;
+        console.log((`This is the number of questions remaining ${questionRemaining}`));
+      });
+    var buttonD = $(`<button>${answerD}</button>`)
+      .prop("checked", true)
+      .appendTo("#game-space")
+      .addClass("button-d")
+      .val("d")
+      .click(function () {
+        questionRemaining--;
+        console.log((`This is the number of questions remaining ${questionRemaining}`));
+      });
+    
   }
-
   
-
+  
   // On user choice
 
   // Check answer & draw new questions & calculate new time & decrement questions left
@@ -140,6 +136,7 @@ function endGame() {
 function highScores() {
   console.log("highScores");
 }
+
 
 const questions = {
   1: {

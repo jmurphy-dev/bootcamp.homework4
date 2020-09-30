@@ -1,5 +1,10 @@
 // Quiz Game
 var timeLeft = 60;
+var answerChosen = false;
+var questionRemaining = 0;
+var userChoice = "";
+var answerToCheck = "";
+
 $(document).ready(function () {
   preGame();
 });
@@ -30,12 +35,7 @@ function preGame() {
 // Game loop
 
 function game() {
-  var questionRemaining
-  if (questionRemaining === 0 || timeLeft === 0) {
-    // Access all of the questions answer objects
-    endGame();
-    console.log("!! Calling endGame from game!!");
-  } 
+  
   console.log("game");
   $("#game-space").children().remove();
   // Draw questions & start clock
@@ -45,11 +45,10 @@ function game() {
   // Event loop
   //console.log(Number(questionRemaining[5]));
   questionRemaining = questionRemaining[5];
-  
+
   for (questionRemaining in questions) {
     //console.log(`${key}: ${questions[key]}`);
     currentQuestion = questions[questionRemaining];
-    
 
     // Access all of the questions and answers
     for (let key in currentQuestion) {
@@ -62,54 +61,74 @@ function game() {
       var answerB = currentObjVal[2];
       var answerC = currentObjVal[3];
       var answerD = currentObjVal[4];
-      var answerToCheck = currentObjVal[5];
-      var answerChosen = false;
-      break
+      answerToCheck = currentObjVal[5];
+      
     }
-
+    //Question
     $(`<h2> ${questionStr} </h2>`).appendTo("#game-space");
-    var buttonA = $(`<button>${answerA}</button>`)
-      .prop("checked", true)
+    //Answer A
+    $(`<button>${answerA}</button>`)
+      .prop("checked", false)
       .appendTo("#game-space")
       .addClass("button-a")
       .val("a")
       .click(function () {
         questionRemaining--;
-        console.log((`This is the number of questions remaining ${questionRemaining}`));
-        answerChosen = true;
+        userChoice = this.value;
+        onUserChoice(answerToCheck);
+        console.log(
+          `This is the number of questions remaining ${questionRemaining}`
+        );
       });
-    var buttonB = $(`<button>${answerB}</button>`)
-      .prop("checked", true)
+      //Answer B
+    $(`<button>${answerB}</button>`)
+      .prop("checked", false)
       .appendTo("#game-space")
       .addClass("button-b")
       .val("b")
-      .click(function () {
+      .click(function  (){
         questionRemaining--;
-        console.log((`This is the number of questions remaining ${questionRemaining}`));
+        userChoice = this.value;
+        onUserChoice(answerToCheck);
+        console.log(
+          `This is the number of questions remaining ${questionRemaining}`
+        );
       });
-    var buttonC = $(`<button>${answerC}</button>`)
-      .prop("checked", true)
+      //Answer C
+    $(`<button>${answerC}</button>`)
+      .prop("checked", false)
       .appendTo("#game-space")
       .addClass("button-c")
       .val("c")
       .click(function () {
         questionRemaining--;
-        console.log((`This is the number of questions remaining ${questionRemaining}`));
+        userChoice = this.value;
+        onUserChoice(answerToCheck);
+        console.log(
+          `This is the number of questions remaining ${questionRemaining}`
+        );
       });
-    var buttonD = $(`<button>${answerD}</button>`)
-      .prop("checked", true)
+      //Answer D
+    $(`<button>${answerD}</button>`)
+      .prop("checked", false)
       .appendTo("#game-space")
       .addClass("button-d")
       .val("d")
       .click(function () {
         questionRemaining--;
-        console.log((`This is the number of questions remaining ${questionRemaining}`));
+        userChoice = this.value;
+        onUserChoice(answerToCheck);
+
+        console.log(
+          `This is the number of questions remaining ${questionRemaining}`
+        );
       });
-    
+      
+
   }
-  
-  
+
   // On user choice
+  
 
   // Check answer & draw new questions & calculate new time & decrement questions left
 
@@ -118,6 +137,19 @@ function game() {
   // Stop the clock & save the value of time remaining
 
   // Start the end game loop
+}
+function onUserChoice(answerToCheck) {
+  console.log(`:: The answer to check is ${answerToCheck}`);
+  console.log(`The user chose ${userChoice}`);
+  if (questionRemaining === 0 || timeLeft === 0) {
+    // Access all of the questions answer objects
+    endGame();
+    console.log("!! Calling endGame from game!!");
+  } else if (userChoice === answerToCheck) {
+    console.log(`The correct answer was chosen!`)
+  } else {
+    console.log(`I checked an answer!`)
+  }
 }
 
 // End Game
@@ -136,7 +168,6 @@ function endGame() {
 function highScores() {
   console.log("highScores");
 }
-
 
 const questions = {
   1: {

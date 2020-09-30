@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 function preGame() {
   console.log("preGame");
-
+  timeLeft = 60;
   // Draw clock
   clock = $("#time-left").text(`Time left : ${timeLeft}`);
 
